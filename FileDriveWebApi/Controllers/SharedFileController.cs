@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FileDriveWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class SharedFileController : ControllerBase
     {
@@ -16,13 +16,13 @@ namespace FileDriveWebApi.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("/sharedfiles/get")]
         public async Task<ActionResult<List<Models.SharedFile>>> GetAllSharedFiles()
         {
             return Ok(await _context.SharedFiles.ToListAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/sharedfiles/get/{id}")]
         public async Task<ActionResult<Models.SharedFile>> GetSharedFile(int id)
         {
             var file = await _context.SharedFiles.FindAsync(id);
@@ -30,7 +30,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(file);
         }
 
-        [HttpPost]
+        [HttpPost("/sharedfiles/post")]
         public async Task<ActionResult<List<Models.SharedFile>>> CreateSharedFile(SharedFileDTO request)
         {
             Models.SharedFile file = new();
@@ -41,7 +41,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.SharedFiles.ToListAsync());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/sharedfiles/delete/{id}")]
         public async Task<ActionResult<List<Models.SharedFile>>> DeleteSharedFile(int id)
         {
             var file = _context.SharedFiles.Find(id);
@@ -51,7 +51,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.SharedFiles.ToListAsync());
         }
 
-        [HttpPut]
+        [HttpPut("/sharedfiles/put")]
         public async Task<ActionResult<List<Models.SharedFile>>> UpdateSharedFile(SharedFileDTO request)
         {
             var file = _context.SharedFiles.Find(request.FileId);

@@ -13,8 +13,8 @@ public partial class File
     public double Filesize { get; set; }
 
     public int UserId { get; set; }
-
+    [JsonIgnore]
     public virtual ICollection<SharedFile> SharedFiles { get; } = new List<SharedFile>();
-
+    [JsonIgnore]
     public virtual User User { get; set; } = null!;
 }

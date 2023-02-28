@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FileDriveWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class FileController : ControllerBase
     {
@@ -16,13 +16,13 @@ namespace FileDriveWebApi.Controllers
             _context= context;
         }
 
-        [HttpGet]
+        [HttpGet("/files/get")]
         public async Task<ActionResult<List<Models.File>>> GetAllFiles()
         {
             return Ok(await _context.Files.ToListAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/files/get/{id}")]
         public async Task<ActionResult<Models.File>> GetFile(int id)
         {
             var file = await _context.Files.FindAsync(id);
@@ -30,7 +30,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(file);
         }
 
-        [HttpPost]
+        [HttpPost("/files/post")]
         public async Task<ActionResult<List<Models.File>>> CreateFile(FileDTO request)
         {
             Models.File file = new();
@@ -42,7 +42,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.Files.ToListAsync());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/files/delete/{id}")]
         public async Task<ActionResult<List<Models.File>>> DeleteFile(int id)
         {
             var file=_context.Files.Find(id);
@@ -52,7 +52,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.Files.ToListAsync());
         }
 
-        [HttpPut]
+        [HttpPut("/files/put")]
         public async Task<ActionResult<List<Models.File>>> UpdateFile(FileDTO request)
         {
             var file = _context.Files.Find(request.FileId);

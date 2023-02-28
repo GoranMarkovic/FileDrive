@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FileDriveWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -16,13 +16,13 @@ namespace FileDriveWebApi.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("/users/get")]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/users/get/{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var u = await _context.Users.FindAsync(id);
@@ -31,7 +31,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(u);
         }
 
-        [HttpPost]
+        [HttpPost("/users/post")]
         public async Task<ActionResult<List<User>>> AddUser(UserDTO request)
         {
             User user = new User();
@@ -43,7 +43,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/users/delete/{id}")]
         public async Task<ActionResult<List<User>>> DeleteUser(int id)
         {
             var hero=_context.Users.Find(id);
@@ -55,7 +55,7 @@ namespace FileDriveWebApi.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [HttpPut]
+        [HttpPut("/users/put")]
         public async Task<ActionResult<List<User>>> UpdateUser(UserDTO user)
         {
             var u = _context.Users.Find(user.UserId);
