@@ -28,6 +28,8 @@ namespace FileDriveDesktopApp
             //a validaciju raditi negdje na serveru, tj webapi
 
             //skontati kako sacuvati trenutno ulogovanog usera
+            HomePageForm homePageForm=new HomePageForm();
+            homePageForm.ShowDialog();
         }
 
 

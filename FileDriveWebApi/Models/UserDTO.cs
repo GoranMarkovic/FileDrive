@@ -5,11 +5,8 @@ namespace FileDriveWebApi.Models
     public class UserDTO
     {
         public int UserId { get; set; }
-
         public string Username { get; set; } = null!;
-
         public string PasswordHash { get; set; } = null!;
-
         public string PasswordSalt { get; set; } = null!;
 
         public byte[] ConvertToByteArray(string value)
